@@ -8,12 +8,14 @@ let photosArray = [];
 let initialLoad = true;
 
 // Unsplash API
+// Initial count is only 5 to hide immediately the loader even though the loaded image is only 5 images
+// This allows the user to constantly use the site even though the other assets/data are still loading
 let count = 5;
 const apiKey ='cEZug5yJQIkpgzw5cGi0Wgz629O5rn5iAw6GC_PPx6I';
 let apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${count}`
 
 
-// Check if all images were laoded
+// Check if all images were loaded
 function imageLoaded(){
     imagesLoaded++;
     console.log(imagesLoaded);
@@ -21,6 +23,9 @@ function imageLoaded(){
         ready = true;
         loader.hidden = true;
         initialLoad = false;
+        // This is just to return the cout number to the maximum allowable by the api
+        // Putting the count number into the maximum number also allows the system to download more data as the user uses the site
+        // This prevent loading times and provide much better experience to the users
         count = 30;
         let apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${count}`
     }
